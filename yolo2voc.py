@@ -25,16 +25,17 @@ if __name__ == "__main__":
         file_path = join(directory, filename)
         file_id = file_path.split("/")[-1].split(".txt")[0]
 
+
         try:
             with open(file_path, 'r') as file:
-                lines = file.readlines()
+                img = Image.open("{}/{}.jpg".format(images_dir, file_id))
+                w, h = img.size
 
+                writer = Writer(images_dir + "/" + str(file_id) + ".jpg", w, h)
+                lines = file.readlines()
                 for line in lines:
                     line = line.strip()
                     data = line.split()
-
-                    img = Image.open("{}/{}.jpg".format(images_dir, file_id))
-                    w, h = img.size
 
                     bbox_width = float(data[3]) * w
                     bbox_height = float(data[4]) * h
@@ -46,8 +47,7 @@ if __name__ == "__main__":
                     x_max = int(center_x + bbox_width / 2)
                     y_max = int(center_y + bbox_height / 2)
 
-                    writer = Writer(images_dir + "/" + str(file_id) + ".jpg", w, h)
                     writer.addObject('Face', x_min, y_min, x_max, y_max)
-                    writer.save(output + "/" + str(file_id) + ".xml")
+                writer.save(output + "/" + str(file_id) + ".xml")
         except Exception as e:
             print("Skipping:", filename, ":", str(e))
