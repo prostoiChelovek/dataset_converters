@@ -70,7 +70,7 @@ if __name__ == "__main__":
         segment_id = 1
         for object_el in object_elems:
             name = object_el.getElementsByTagName("name")[0].firstChild.nodeValue
-            bndbox_el = doc.getElementsByTagName("object")[0]
+            bndbox_el = object_el.getElementsByTagName("bndbox")[0]
             x_min = int(bndbox_el.getElementsByTagName("xmin")[0].firstChild.nodeValue)
             y_min = int(bndbox_el.getElementsByTagName("ymin")[0].firstChild.nodeValue)
             x_max = int(bndbox_el.getElementsByTagName("xmax")[0].firstChild.nodeValue)
