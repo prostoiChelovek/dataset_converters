@@ -16,7 +16,7 @@ if __name__ == "__main__":
     output = sys.argv[2]
     print("Output:", directory)
     images_dir = sys.argv[3]
-    print("Imaged directory:", images_dir)
+    print("Images directory:", images_dir)
 
     files = glob.glob(directory + "/*.txt")
     print("Found %i files" % len(files))
@@ -24,7 +24,6 @@ if __name__ == "__main__":
     for filename in files:
         file_path = join(directory, filename)
         file_id = file_path.split("/")[-1].split(".txt")[0]
-
 
         try:
             with open(file_path, 'r') as file:

@@ -25,7 +25,7 @@ class Face_metadata:
         self.illumination = bool(metadata_obj[16][0][0])
         self.filename = metadata_obj[17][0][0][0]
         self.landmarks = metadata_obj[12][0].astype(int).tolist()
-        self.estimated_landmarks = metadata_obj[13][0].astype(int).tolist()
+        self.estimated_landmarks = metadata_obj[13][0].astype(bool).tolist()
         self.face_ROI = metadata_obj[14][0].astype(int).tolist()
         self.glasses_ROI = metadata_obj[15][0].astype(int).tolist()
 

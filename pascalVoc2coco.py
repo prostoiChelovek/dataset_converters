@@ -24,12 +24,14 @@ data["categories"] = []
 data["licenses"] = licenses
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Pass path to directory with .xml annotations")
+    if len(sys.argv) != 3:
+        print("Pass path to directory with .xml annotations and path to output .json file")
         exit(1)
 
     directory = sys.argv[1]
     print("Directory:", directory)
+    output = sys.argv[2]
+    print("Output:", output)
 
     files = glob.glob(directory + "/*.xml")
     print("Found %i files" % len(files))
@@ -102,5 +104,5 @@ if __name__ == "__main__":
 
         data["images"].append(image)
 
-    with open('../data.json', 'w') as outfile:
+    with open(output, 'w') as outfile:
         json.dump(data, outfile, indent=4)
