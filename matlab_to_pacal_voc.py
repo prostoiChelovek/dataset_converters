@@ -3,6 +3,8 @@ import sys
 from pascal_voc_writer import Writer
 from scipy.io import loadmat
 
+# http://www.vision.caltech.edu/html-files/archive.html
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Pass path to .mat file and path to dataset directory")
