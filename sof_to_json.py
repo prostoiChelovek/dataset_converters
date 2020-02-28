@@ -6,6 +6,16 @@ from scipy.io import loadmat
 
 # https://sites.google.com/view/sof-dataset
 
+def xy_arr2obj_arr(arr):
+    res = []
+    for i in range(0, len(arr) - 1, 2):
+        res.append({"x": arr[i], "y": arr[i + 1]})
+    return res
+
+
+def arr2rect(arr):
+    return {"x": arr[0], "y": arr[1], "width": arr[2], "height": arr[3]}
+
 
 class Face_metadata:
     def __init__(self, metadata_obj):
@@ -24,10 +34,10 @@ class Face_metadata:
         self.headscarf = bool(metadata_obj[11][0][0])
         self.illumination = bool(metadata_obj[16][0][0])
         self.filename = metadata_obj[17][0][0][0]
-        self.landmarks = metadata_obj[12][0].astype(int).tolist()
+        self.landmarks = xy_arr2obj_arr(metadata_obj[12][0].astype(int).tolist())
         self.estimated_landmarks = metadata_obj[13][0].astype(bool).tolist()
-        self.face_ROI = metadata_obj[14][0].astype(int).tolist()
-        self.glasses_ROI = metadata_obj[15][0].astype(int).tolist()
+        self.face_ROI = arr2rect(metadata_obj[14][0].astype(int).tolist())
+        self.glasses_ROI = arr2rect(metadata_obj[15][0].astype(int).tolist())
 
     def to_json(self):
         return {

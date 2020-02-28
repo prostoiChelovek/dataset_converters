@@ -37,10 +37,10 @@ This script converts [SoF annotations](https://sites.google.com/view/sof-dataset
             "headscarf": false,
             "illumination": true,
             "filename": "AbdA_00001_m_31_*",
-            "landmarks": [34 elemts: x, y],
+            "landmarks": [17 elemts: {"x": x, "y": y}],
             "estimated_landmarks": [17 bools],
-            "face_ROI": [x, y, width, height],
-            "glasses_ROI": [x, y, width, height]
+            "face_ROI": {"x": x, "y": y, "width": width, "height": height},
+            "glasses_ROI": {"x": x, "y": y, "width": width, "height": height}
           }
         }
     ]
