@@ -17,6 +17,11 @@ def arr2rect(arr):
     return {"x": arr[0], "y": arr[1], "width": arr[2], "height": arr[3]}
 
 
+emotions = [
+    "no", "hp", "sd", "sr"
+]
+
+
 class Face_metadata:
     def __init__(self, metadata_obj):
         # this format sucks
@@ -25,9 +30,10 @@ class Face_metadata:
         self.gender = metadata_obj[2][0][0][0]
         self.age = int(metadata_obj[3][0][0])
         self.lightning = metadata_obj[4][0][0]
-        self.view = metadata_obj[5][0][0]
-        self.cropped = bool(metadata_obj[6][0][0])
-        self.emotion = int(metadata_obj[7][0][0])
+        # to match file naming
+        self.view = "fr" if metadata_obj[5][0][0] == "f" else "nf"
+        self.cropped = "cr" if metadata_obj[6][0][0] else "nc"
+        self.emotion = emotions[metadata_obj[7][0][0] - 1]
         self.year = int(metadata_obj[8][0][0])
         self.part = metadata_obj[9][0][0]
         self.glasses = int(metadata_obj[10][0][0])
